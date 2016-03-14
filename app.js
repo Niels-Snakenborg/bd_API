@@ -7,36 +7,15 @@ var bodyParser = require('body-parser');
 
 // Database
 var mongo = require('mongodb');
-var ObjectID = mongo.ObjectID;
 var monk = require('monk');
-var db;
-
-var app = express();
-
-// Connect to the database before starting the application server.
-mongo.MongoClient.connect(process.env.MONGOLAB_URI, function (err, database) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
-
-  // Save database object from the callback for reuse.
-  db = database;
-  console.log("Database connection ready");
-
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
-});
-
+var db = monk('localhost:27017/ballondecoraties');
 
 var routes = require('./routes/index');
 var decorations = require('./routes/decorations');
 
 var corseConfig = require('./Config/cors');
 
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
