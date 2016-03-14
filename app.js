@@ -11,6 +11,8 @@ var ObjectID = mongo.ObjectID;
 var monk = require('monk');
 var db;
 
+var app = express();
+
 // Connect to the database before starting the application server.
 mongo.MongoClient.connect(process.env.MONGOLAB_URI, function (err, database) {
   if (err) {
@@ -35,7 +37,6 @@ var decorations = require('./routes/decorations');
 
 var corseConfig = require('./Config/cors');
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
