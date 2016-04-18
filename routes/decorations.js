@@ -27,7 +27,8 @@ router.post('/addDecoration', function(req, res) {
 
 router.delete('/deleteDecoration', function(req, res) {
     var db = req.db;
-    db.decorations.remove({'_id': req.body._id}, function(err, docs) {
+    var collection = db.get('decorations');
+    collection.remove({'_id': req.body._id}, function(err, docs) {
         res.json(docs);
     });
 });
