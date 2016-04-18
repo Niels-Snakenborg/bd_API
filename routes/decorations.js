@@ -25,4 +25,11 @@ router.post('/addDecoration', function(req, res) {
     });
 });
 
+router.delete('/deleteDecoration', function(req, res) {
+    var db = req.db;
+    db.decorations.remove({'_id': new ObjectID(req.params.id)}, function(err, docs) {
+        res.json(docs);
+    });
+});
+
 module.exports = router;
