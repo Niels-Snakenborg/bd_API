@@ -25,9 +25,9 @@ router.post('/addDecoration', function(req, res) {
     });
 });
 
-router.post('/deleteDecoration', function(req, res) {
+router.delete('/deleteDecoration', function(req, res) {
     var db = req.db;
-    db.decorations.remove({'_id': new ObjectID(req.body._id)}, function(err, docs) {
+    db.decorations.remove({'_id': req.body._id}, function(err, docs) {
         res.json(docs);
     });
 });
