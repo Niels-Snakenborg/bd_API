@@ -13,6 +13,17 @@ router.get('/', function(req, res) {
 });
 
 /*
+ * GET all decorations
+ */
+router.get('/:id', function(req, res) {
+    var db = req.db;
+    var collection = db.get('decorations');
+    collection.find({_id: req.params.id},{},function(e,docs){
+        res.json(docs);
+    });
+});
+
+/*
  * Post line in room
  */
 router.post('/addDecoration', function(req, res) {
